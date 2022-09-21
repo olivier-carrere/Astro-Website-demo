@@ -1,0 +1,92 @@
+---
+export interface Props {
+  activeTextColor?: string;
+  headings: string[];
+  contents: string[];
+}
+const { headings, contents, activeTextColor = '#A741FF' } = Astro.props as Props;
+---
+
+<div class="tabs">
+  <!-- npm, pnmpm, yarn -->
+  <ul class="tabs-header">
+   { headings.map(heading => (
+      <li>{ heading }</li>
+    ))}
+  </ul>
+
+  <!-- Comandos de instalación -->
+  <ul class="tabs-content">
+    { contents.map(content => (
+      <li class="tab">{ content }</li>
+    ))}
+  </ul>
+
+</div>
+
+<style>
+  .tabs {
+    margin-top: 30px;
+  }
+  .tabs-header {
+    display: flex;
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+  }
+  .tabs-header li {
+    margin-right: 20px;
+    cursor: pointer;
+  }
+  .tabs-content {
+    font-size: 18px;
+    padding: 20px;
+    border: 1px solid #333;
+    font-weight: bold;
+    background: #f4f4f4;
+  }
+</style>
+
+<script define:vars={{activeTextColor}}>
+
+  const createTabs = ( element ) => {
+
+    const header = element.querySelector('.tabs-header');       // Identifica el div tabs-header
+    const content = element.querySelector('.tabs-content');     // Identifica el div tabs-content
+    const tab_headers = [...header.children];                   // Obtenemos los hijos de tabs-header []
+    const tab_contents = [...content.children];                 // Obtenemos los hijos de tab-content []
+
+    tab_contents.forEach((x) => (x.style.display = 'none'));    // Quitamos la visualización de los contenidos
+
+    let current_tab_index = -1; // Inicializamos una variable para indicar el header seleccionado como -1 
+
+    const setTab = ( index ) => {   // recibe una posición del header
+      
+      if (current_tab_index > -1) {                             // Si el índice > -1 (0, 1, 2) ponemos todos los headers con
+        tab_headers[current_tab_index].style.fontWeight = 400;  // Letra normal
+        tab_headers[current_tab_index].style.color = '#fff';    // Color blanco
+        tab_contents[current_tab_index].style.display = 'none'; // No se muestra el contenido en la posición seleccionada 
+      }
+
+      tab_headers[index].style.fontWeight = 800;                // El header seleccionado le ponemos ,
+      tab_headers[index].style.color = activeTextColor;         // Letra morada
+      tab_contents[index].style.display = 'flex';               // Se muestra el contenido en la posición seleccionada
+      current_tab_index = index;                                // Se establece el current_tab_index con dicha posición seleccionada
+    }
+
+    let default_tab_index = tab_headers.findIndex((x) => {      // De los header obtenemos los índices 
+      return [...x.classList]//.indexOf('default-tab') > -1;      
+    });
+    
+    default_tab_index = default_tab_index === -1 ? 0 : default_tab_index; // Si default_tab_index === -1 pasa a 0 sino mantiene su valor
+    
+    setTab(default_tab_index);
+                                                            //index
+    tab_headers.forEach((x, i) => (x.onclick = (event) => setTab(i)));    // Recorremos cada header y le asociamos un evento click y se lo enviamos a setTab   
+    
+
+  }
+
+  // Run
+  [...document.querySelectorAll('.tabs')].forEach((x) => createTabs(x));  // Por cada elemento de "tabs" aplicamos la función createTabs
+</script>

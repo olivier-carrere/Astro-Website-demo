@@ -1,0 +1,35 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Card from '../components/Card.astro';
+
+export async function getStaticPaths() {            // La getStaticPaths()función devuelve una matriz de objetos que determinan qué rutas serán renderizadas previamente por Astro.
+
+  const posts = await Astro.glob('../posts/*.md');  // Obtenemos los posts
+
+  return posts.map( post => ({                      // Mapeamos los posts 
+    params: {
+      slug: post.frontmatter.slug                   // por cada post obtenemos el slug. Los params construyen rutas en base a ese slug
+    },
+    props: {
+      post                                          // y el contenido del post    
+    }
+  }));
+}
+
+const { Content, frontmatter } = Astro.props.post; // En md el post se compone del encabezado (frontmatter) y el contenido (content)
+---
+
+<Layout title={frontmatter.title}>
+  <section class="page-content">
+    <div class="container">
+      <Card>
+        <a class="btn" href="/blog">Go Back</a>
+        <h2>{frontmatter.title}</h2>
+        <div>
+          Written by <strong>{frontmatter.author} </strong> on {new Date(frontmatter.date).toLocaleDateString()}
+        </div>
+        <Content />
+      </Card>
+    </div>
+  </section>
+</Layout>
