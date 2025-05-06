@@ -1,6 +1,6 @@
 # Méditer sans but
 
-“Kan JKi Zaï”, ça signifie la véritable liberté. Qu’est-ce que c’est, cette véritable liberté ? Sur quoi est-ce qu’on doit se concentrer pendant zazen ? Bien sûr, il y a les points de la posture. Les points importants de la posture. Mais se concentrer sur les points, ça ne peut pas être la véritable liberté.
+Kan JKi Zaï*, ça signifie la véritable liberté. Qu’est-ce que c’est, cette véritable liberté ? Sur quoi est-ce qu’on doit se concentrer pendant zazen ? Bien sûr, il y a les points de la posture. Les points importants de la posture. Mais se concentrer sur les points, ça ne peut pas être la véritable liberté.
 
 Quand on positionne correctement sa posture, alors il y a un moment où on peut lâcher, laisser la gravité de son corps s’exprimer. On ressent un sentiment de liberté. Sensei dit : “lorsque l’ego conscient a disparu”. À ce moment-là, on peut ressentir Kan JKi Zaï. Parfois, c’est quelques secondes, mais ce sont quelques secondes de véritable liberté. Le temps n’est pas linéaire.
 
